@@ -2,7 +2,7 @@ package io.quarkus.opentelemetry.runtime.exporter.otlp;
 
 import static io.quarkus.opentelemetry.runtime.OpenTelemetryUtil.convertKeyValueListToMap;
 import static io.quarkus.opentelemetry.runtime.config.runtime.exporter.OtlpExporterRuntimeConfig.DEFAULT_GRPC_BASE_URI;
-import static io.quarkus.opentelemetry.runtime.config.runtime.exporter.OtlpExporterTracesConfig.Protocol.HTTP_PROTOBUF;
+import static io.quarkus.opentelemetry.runtime.config.runtime.exporter.OtlpExporterTracesConfig.Protocol.GRPC;
 
 import java.util.List;
 import java.util.Map;
@@ -106,7 +106,7 @@ public class OtlpRecorder {
                     }
                 });
 
-        if (!exporterRuntimeConfig.traces().protocol().orElse("").equals(HTTP_PROTOBUF)) {
+        if (!exporterRuntimeConfig.traces().protocol().orElse("").equals(GRPC)) {
             throw new IllegalStateException("Only the GRPC Exporter is currently supported. " +
                     "Please check `otel.exporter.otlp.traces.protocol` property");
         }
